@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9284DF74-EBDC-4AA2-8EAE-7A4E40196594}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>ManagerService</RootNamespace>
+    <AssemblyName>ManagerService</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="FluentNHibernate">
+      <HintPath>..\packages\FluentNHibernate.2.1.2\lib\net461\FluentNHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate">
+      <HintPath>..\packages\NHibernate.5.1.1\lib\net461\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject, Version=3.3.4.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.3.4\lib\net45\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AppInfrastructureNinjectModule.cs" />
+    <Compile Include="TerminalsManagerService.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TerminalsManagerService.Designer.cs">
+      <DependentUpon>TerminalsManagerService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ManagerService.Database\ManagerService.Database.csproj">
+      <Project>{77C6070F-8541-4A2A-A596-C086EE6277E0}</Project>
+      <Name>ManagerService.Database</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ManagerService.Entities\ManagerService.Entities.csproj">
+      <Project>{a403a4e6-dd5f-49c2-8249-2e7ccc221e6e}</Project>
+      <Name>ManagerService.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ManagerService.Repositories\ManagerService.Repositories.csproj">
+      <Project>{3abdc9de-dae6-49b0-b6fc-3cb4deb8cff0}</Project>
+      <Name>ManagerService.Repositories</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ManagerService.Services\ManagerService.Services.csproj">
+      <Project>{cfb8822e-43e8-4381-a208-76cfc8bff94f}</Project>
+      <Name>ManagerService.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ManagerService.Utilities\ManagerService.Utilities.csproj">
+      <Project>{d3c9396d-475e-45ed-bb31-8b385927e9b3}</Project>
+      <Name>ManagerService.Utilities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
